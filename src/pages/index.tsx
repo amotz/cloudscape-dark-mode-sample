@@ -15,12 +15,20 @@ import {
   Input,
   Tiles,
   HelpPanel,
+  Toggle,
   Alert,
 } from "@cloudscape-design/components";
-import React from "react";
+import { applyMode, Mode } from "@cloudscape-design/global-styles";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  const [tileValue, setTileValue] = React.useState("");
+  const [tileValue, setTileValue] = useState("");
+  const [useDarkMode, setUseDarkMode] = useState(false);
+
+  useEffect(() => {
+    applyMode(useDarkMode ? Mode.Dark : Mode.Light);
+  }, [useDarkMode]);
+
   return (
     <>
       <TopNavigation
@@ -124,7 +132,18 @@ export default function Home() {
         content={
           <ContentLayout
             header={
-              <Header variant="h1" info={<Link variant="info">Info</Link>}>
+              <Header
+                variant="h1"
+                info={<Link variant="info">Info</Link>}
+                actions={
+                  <Toggle
+                    onChange={({ detail }) => setUseDarkMode(detail.checked)}
+                    checked={useDarkMode}
+                  >
+                    Dark Mode
+                  </Toggle>
+                }
+              >
                 Page header
               </Header>
             }
