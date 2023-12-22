@@ -15,6 +15,7 @@ import {
   Input,
   Tiles,
   HelpPanel,
+  Alert,
 } from "@cloudscape-design/components";
 import React from "react";
 
@@ -142,6 +143,9 @@ export default function Home() {
                 }
               >
                 <SpaceBetween direction="vertical" size="l">
+                  <Alert statusIconAriaLabel="Warning" type="warning">
+                    This is a warning message.
+                  </Alert>
                   <FormField label="First field">
                     <Input value="" />
                   </FormField>
